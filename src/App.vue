@@ -2,16 +2,19 @@
   <div id="app">
     <Header></Header>
     我是根标签
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 export default {
   name: 'App',
   components: {
     Header,
+    Footer,
   },
 }
 </script>
