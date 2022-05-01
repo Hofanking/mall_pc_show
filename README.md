@@ -1,25 +1,19 @@
-# mall_pc_show 运行命令
+# 安装
 
 ```
 npm install
 ```
 
-## Compiles and hot-reloads for development
+# 运行
 
 ```
 npm run serve
 ```
 
-## Compiles and minifies for production
+# 生成 dist
 
 ```
 npm run build
-```
-
-## Lints and fixes files
-
-```
-npm run lint
 ```
 
 # 1. 脚手架下载下来的项目稍微配置一下
@@ -61,4 +55,59 @@ src 文件夹简写方法，配置别名。【@代表的是 src 文件夹，这�
   },
   "exclude": ["node_modules", "dist"] // 除了在node_modules和dist目录下
 }
+```
+
+# 2. 路由跳转
+
+## 2.1 指定路由显示
+
+可以在配置路由时，添加【meta】属性
+
+```js
+{
+  path: '/home',
+  component: Home,
+  meta: { show: true }, // 是否显示Footer组件
+}
+```
+
+可以在组件中，使用$route 获取到
+
+```html
+<footer v-show="$route.meta.show"></footer>
+```
+
+## 2.2 路由传参方式
+
+### 2.2.1 字符串形式
+
+```js
+this.$router.push(
+  '/search/' + this.keyword + '?k=' + this.keyword.toUpperCase()
+)
+```
+
+### 2.2.2 模板字符串
+
+```js
+this.$router.push(`/search/${this.keyword}?k=${this.keyword.toUpperCase()}`)
+```
+
+### 2.2.3 对象
+
+此种方式要给路由配置 name 属性
+
+```js
+this.$router.push({
+  name: 'searcg',
+  params: { keyword: this.keyword },
+  query: { k: this.keyword.toUpperCase() },
+})
+```
+
+## 2.2.4 路由参数获取
+
+```js
+params 参数：$route.params.keyword
+query参数：$route.query.k
 ```
